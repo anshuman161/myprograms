@@ -10,9 +10,8 @@
  %> 
 </head>
 <body>
-
      
-      <%
+  <%
   if(session.getAttribute("email")==null && session.getAttribute("password")==null)
   {
 	  response.sendRedirect("loginpage.jsp");

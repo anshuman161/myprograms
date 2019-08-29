@@ -11,11 +11,19 @@ response.setHeader("Expire", "0");
 		
 %>
 </head>
-
 <body>
+    
+  <%
+  if(session.getAttribute("email")==null && session.getAttribute("password")==null)
+  {
+	  response.sendRedirect("loginpage.jsp");
+  }
+%>
+<form action="logouturl" method="post">
  <h2>Welcom .This is home page!!!</h2>
- <a href="logout.jsp">Go For LogOut</a>
- <a href="">Profile</a>
  
+ <input type="submit" value="LogOut">
+ <a href="">Profile</a>
+ </form>
 </body>
 </html>

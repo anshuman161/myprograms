@@ -13,6 +13,7 @@ ${msg}
         <tr><td>Email</td><td><input type="email" name="email" required></td></tr>
         <tr><td>Password</td><td><input type="password" name="password" required></td></tr>
         <tr><td><input type="submit" value="login"></td></tr>
+        <tr><td><a href="forgetpasswordpage">Forget Password ?</a></td></tr>
         </table>
     </form>
 </body>

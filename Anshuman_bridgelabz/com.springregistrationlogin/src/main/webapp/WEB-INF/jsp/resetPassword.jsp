@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<h2>Welcome Page!!This is index page.</h2>
 <body>
-<a href="registrationpage">Registration</a>
-<a href="loginpage">LogIn</a>
-
+ <form action="newPassword" method="get">
+ <tr><td> Enter New Password </td> <td><input type="password" name="password"></td></tr>
+ <tr><td> <input type="submit" value="Submit"></td></tr>
+ </form>
 </body>
 </html>

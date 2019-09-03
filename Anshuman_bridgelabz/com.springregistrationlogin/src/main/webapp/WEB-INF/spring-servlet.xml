@@ -1,41 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"  
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
-    xmlns:context="http://www.springframework.org/schema/context"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc"  
-    xsi:schemaLocation="  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="  
         http://www.springframework.org/schema/beans  
         http://www.springframework.org/schema/beans/spring-beans.xsd  
         http://www.springframework.org/schema/context  
         http://www.springframework.org/schema/context/spring-context.xsd  
         http://www.springframework.org/schema/mvc  
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
-        
-<context:component-scan base-package="com.spring.controller"></context:component-scan>
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-<bean
+	<context:component-scan
+		base-package="com.spring.controller"></context:component-scan>
+
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
-	</bean>   
+	</bean>
+
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/springuserdatabase"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+
+	<bean id="jdbctemp"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="datasource"></property>
+	</bean>
+
+	<bean id="employeedao" class="com.spring.repositry.EmployeeDao">
+		<property name="jdbctemp" ref="jdbctemp"></property>
+	</bean>
+
+	<bean id="service"
+		class="com.spring.services.ServiceImplementation">
+		<property name="empdao" ref="employeedao"></property>
+	</bean>
+	<bean id="password" class="com.spring.util.Utility"></bean>
 	
-<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">    
-<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>    
-<property name="url" value="jdbc:mysql://localhost:3306/springuserdatabase"></property>    
-<property name="username" value="root"></property>    
-<property name="password" value="root"></property>    
-</bean>  
-
-<bean id="jdbctemp" class="org.springframework.jdbc.core.JdbcTemplate">    
-<property name="dataSource" ref="datasource"></property>    
-</bean>  
-
-<bean id="empdao" class="com.spring.repositry.EmployeeDao">
-<property name="jdbctemp" ref="jdbctemp"></property>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.gmail.com" />
+	<property name="port" value="587" />
+	 <property name="protocol"><value>smtp</value></property>
+	<property name="username" value="anshumanjoshi161@gmail.com" />
+	<property name="password" value="Mycode@2019" />
+		
+	<property name="javaMailProperties">
+	   <props>
+       	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.starttls.enable">true</prop>
+       	       <prop key="mail.smtp.starttls.enable">true</prop>
+                    <prop key="mail.smtp.auth">true</prop>
+                    <prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+                    <prop key="mail.smtps.ssl.trust">*</prop>
+       	   </props>
+	</property>
 </bean>
+	
 
-<bean id="service" class="com.spring.services.ServiceImplementation">
- <property name="empdao" ref="empdao"></property>
-</bean>
-
+	
 </beans>        

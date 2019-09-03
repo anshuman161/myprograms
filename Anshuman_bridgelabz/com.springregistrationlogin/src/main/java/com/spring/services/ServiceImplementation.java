@@ -11,22 +11,35 @@ import com.spring.repositry.EmployeeDao;
 public class ServiceImplementation implements ServiceInterface {
 
 	@Autowired
-	EmployeeDao empdao;
+	EmployeeDao employeedao;
 
-	public void setEmpdao(EmployeeDao empdao) {
-		this.empdao = empdao;
+	public void setEmpdao(EmployeeDao employeedao) {
+		this.employeedao = employeedao;
 	}
 
 	public int doregister(EmployeeDetails employee) 
 	{
-		int demo = empdao.doregister(employee);
+		int demo = employeedao.doregister(employee);
 		return demo;
 	}
 
 	public EmployeeDetails dologin(EmployeeDetails employee) 
 	{
 
-		return empdao.dologin(employee);
+		return employeedao.dologin(employee);
 	}
+
+	public EmployeeDetails doemail(EmployeeDetails employee)
+	{	
+		return employeedao.doemail(employee);
+	}
+
+	public int resetpassword(EmployeeDetails employee)
+	{
+	System.out.println("inside service mail");
+		return employeedao.restpassword(employee);
+	}
+
+	
 
 }

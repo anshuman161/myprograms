@@ -6,10 +6,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import springprograms.coreprograms.Student;
 
 public class MainClass {
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("springprograms/applicatioContext.xml");
-		Address student = (Address) context.getBean("address");
-		student.getname();
+		ForQualifier student = (ForQualifier) context.getBean("address");
+		student.value();
 	}
 }

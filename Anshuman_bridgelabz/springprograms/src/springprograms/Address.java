@@ -1,23 +1,14 @@
 package springprograms;
 
-public class Address {
-private int id;
-private String name;
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
+import org.springframework.context.annotation.Primary;
 
-public void getname()
+@Primary
+public class Address implements ForQualifier 
 {
-System.out.println(id+" "+name);	
-}
+     
+	@Override
+	public void value() {
+		System.out.println("Address is calling");
+	}
+
 }

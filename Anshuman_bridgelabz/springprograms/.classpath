@@ -20,5 +20,7 @@
 	<classpathentry kind="lib" path="/home/admin1/Downloads/aspectjweaver-1.5.3.jar"/>
 	<classpathentry kind="lib" path="/home/admin1/Downloads/com.springsource.org.aopalliance-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/home/admin1/Downloads/aspectjrt-1.6.9.jar"/>
+	<classpathentry kind="lib" path="/home/admin1/Downloads/mailactivation/mail.jar"/>
+	<classpathentry kind="lib" path="/home/admin1/Downloads/mailactivation/activation.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

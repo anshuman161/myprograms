@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.beans.EmployeeDetails;
@@ -42,14 +43,14 @@ public class EmployeeController {
 	}
 
 	@RequestMapping("/loginpage")
-	public String viewloginpage() {
+	public String viewLogInPage() {
 		String name = "loginpage";
 		System.out.println("entered into login");
 		return name;
 	}
 
 	@RequestMapping(value = "/employeeform", method = RequestMethod.POST)
-	public ModelAndView doregister(@ModelAttribute EmployeeDetails edetails) {
+	public ModelAndView doRegister(@ModelAttribute EmployeeDetails edetails) {
 		String password = edetails.getPassword();
 
 		ModelAndView mav = new ModelAndView();
@@ -66,20 +67,21 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/login",method=RequestMethod.POST)
-	public ModelAndView dologin(HttpSession session, @ModelAttribute EmployeeDetails employee) {
+	public ModelAndView doLogIn(@ModelAttribute EmployeeDetails employee) {
 		ModelAndView mv = new ModelAndView();
 		String password = employee.getPassword();
 		String newPassword = util.encryption(password);
 		employee.setPassword(newPassword);
 		EmployeeDetails demo = service.dologin(employee);
 		System.out.println(demo);
-		if (demo != null) {
-
-			session.setAttribute("email", employee.getEmail());
+		if (demo != null) 
+		{
 			System.out.println("inside dologin :-");
 			mv.addObject("msg", "homepage" + demo + ", You have successfully logged in.");
 			mv.setViewName("homepage");
-		} else {
+		} 
+		else
+		{
 			mv.addObject("msg", "Invalid user id or password.");
 			mv.setViewName("loginpage");
 		}
@@ -87,14 +89,13 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/logoutwork")
-	public String logout(HttpSession session) {
-		session.removeAttribute("email");
-		session.invalidate();
+	public String logOut() {
+		
 		return "loginpage";
 	}
 
 	@RequestMapping("/forgetpasswordpage")
-	public String viewforgetpassword() {
+	public String viewForgetPassword() {
 		String name = "forgetpasswordpage";
 		System.out.println("entered into forgetpassword");
 		return name;
@@ -105,21 +106,20 @@ public class EmployeeController {
 	{
 		
 		EmployeeDetails details = service.doemail(employee);
-		if (details != null) {
+		if (details != null)
+		{
 			System.out.println("inside mail controller");
 			String from = "anshumanjoshi161@gmail.com";
 		 	String  to = employee.getEmail();
-			
-			System.out.println("inside chekmail method :-"+to);
 			String subject = "Reset Password !";
 			String msg = "http://localhost:8081/springregistrationlogin/resetPassword";
-
+ 
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom(from);
 			message.setTo(to);
 			message.setSubject(subject);
 			message.setText(msg);
-			System.out.println(message);
+
 			mailSender.send(message);
 			System.out.println("done");
 		}
@@ -127,7 +127,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/resetPassword",method=RequestMethod.GET)
-	public String viewreset() 
+	public String viewReset() 
 	{
 		return "resetPassword";
 	}
@@ -136,7 +136,7 @@ public class EmployeeController {
 	{
 		
 		String password = edetails.getPassword();
-		System.out.println(password);
+		
 		String newPassword = util.encryption(password);
 		edetails.setPassword(newPassword);
 		int demo= service.resetpassword(edetails);

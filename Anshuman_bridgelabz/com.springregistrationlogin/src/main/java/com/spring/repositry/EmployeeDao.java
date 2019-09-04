@@ -85,14 +85,10 @@ public class EmployeeDao
 	public int restpassword(EmployeeDetails employee)
 	{
 		
-		System.out.println("before getting mail value");
-	    
 		System.out.println("inside dao reset method :-"+mailid);
-		System.out.println("inside dao password method");
+		
 		String sql="update userdetails set password='"+employee.getPassword()+"' where email='"+mailid+"'";
-	      
-		System.out.println("outside sql from dao "+sql);
-	    System.out.println(employee.getPassword()+" "+mailid);
+	    
 		return	jdbctemp.update(sql);
 	}
 	

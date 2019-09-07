@@ -1,0 +1,3 @@
+spring.h2.console.enabled=true
+spring.datasource.platform=2
+spring.datasource.url=jdbc:mysql://localhost:3306/springuserdatabase

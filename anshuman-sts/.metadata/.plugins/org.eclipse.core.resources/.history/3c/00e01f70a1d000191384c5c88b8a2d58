@@ -1,0 +1,2 @@
+spring.mvc.view.prefix=/webspp/pages/
+spring.mvc.view.suffix=.jsp

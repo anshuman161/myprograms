@@ -1,0 +1,32 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.beans.StudentDetails;
+import com.example.demo.repository.StudentDao;
+
+@Controller
+@RequestMapping(value = "/gotocheck")
+public class StudentController 
+{
+	@Autowired
+	private StudentDao studentdao;
+	
+   @PostMapping("/getregister")
+   public String doregister(List<StudentDetails> sdetails)
+   {
+	System.out.println("hello");
+	studentdao.save(sdetails);
+	return "student registered:-"+sdetails.size(); 
+   }
+   
+   
+   
+}

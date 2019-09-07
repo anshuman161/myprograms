@@ -33,14 +33,14 @@
 		<property name="dataSource" ref="datasource"></property>
 	</bean>
 
-	<bean id="employeedao" class="com.spring.repositry.EmployeeDao">
+	 <bean id="employeedao" class="com.spring.repositry.EmployeeDao">
 		<property name="jdbctemp" ref="jdbctemp"></property>
 	</bean>
 
 	<bean id="service"
 		class="com.spring.services.ServiceImplementation">
 		<property name="empdao" ref="employeedao"></property>
-	</bean>
+	</bean> 
 	<bean id="password" class="com.spring.util.Utility"></bean>
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />

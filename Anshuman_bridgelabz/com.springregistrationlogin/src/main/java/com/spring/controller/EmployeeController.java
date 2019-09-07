@@ -1,17 +1,15 @@
 
 package com.spring.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +17,7 @@ import com.spring.beans.EmployeeDetails;
 import com.spring.services.ServiceImplementation;
 import com.spring.util.Utility;
 
-@Controller
+@RestController
 public class EmployeeController {
 
 	@Autowired
@@ -51,7 +49,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/employeeform", method = RequestMethod.POST)
 	public ModelAndView doRegister(@ModelAttribute EmployeeDetails edetails) {
-		String password = edetails.getPassword();
+	String password = edetails.getPassword();
 
 		ModelAndView mav = new ModelAndView();
 		String newPassword = util.encryption(password);
@@ -66,26 +64,33 @@ public class EmployeeController {
 		}
 	}
 
-	@RequestMapping(value = "/login",method=RequestMethod.POST)
-	public ModelAndView doLogIn(@ModelAttribute EmployeeDetails employee) {
-		ModelAndView mv = new ModelAndView();
-		String password = employee.getPassword();
-		String newPassword = util.encryption(password);
-		employee.setPassword(newPassword);
-		EmployeeDetails demo = service.dologin(employee);
+	@RequestMapping(value = "/login",method=RequestMethod.GET)
+	public String doLogIn(@RequestParam String email, @RequestParam String password) {
+		//ModelAndView mv = new ModelAndView();
+		//String password = employee.getPassword();
+		//String newPassword = util.encryption(password);
+		//employee.setPassword(newPassword);
+		//EmployeeDetails demo = service.dologin(employee);
+		EmployeeDetails empdetails=new EmployeeDetails();
+		empdetails.setEmail(email);
+		empdetails.setPassword(password);
+		EmployeeDetails demo = service.dologin(empdetails);
+		
 		System.out.println(demo);
 		if (demo != null) 
 		{
 			System.out.println("inside dologin :-");
-			mv.addObject("msg", "homepage" + demo + ", You have successfully logged in.");
-			mv.setViewName("homepage");
+			//mv.addObject("msg", "homepage" + demo + ", You have successfully logged in.");
+			//mv.setViewName("homepage");
+		 return "success";
 		} 
 		else
 		{
-			mv.addObject("msg", "Invalid user id or password.");
-			mv.setViewName("loginpage");
+			//mv.addObject("msg", "Invalid user id or password.");
+			//mv.setViewName("loginpage");
+		  return "fail";
 		}
-		return mv;
+		//return mv;
 	}
 
 	@GetMapping("/logoutwork")

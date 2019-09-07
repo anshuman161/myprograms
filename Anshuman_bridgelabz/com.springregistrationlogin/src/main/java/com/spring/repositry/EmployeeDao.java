@@ -1,11 +1,8 @@
 package com.spring.repositry;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -33,42 +30,46 @@ public class EmployeeDao
 	}
    public EmployeeDetails dologin(EmployeeDetails employee) 
    {
-		try {
+		
 			String squery = "select email, password from userdetails where email='" + employee.getEmail()
 					+ "' and password='" + employee.getPassword() + "'";
 			System.out.println("Dao page inside method :-" + squery);
 
-			List<EmployeeDetails> users = jdbctemp.query(squery, new UserMapper());
+			List<EmployeeDetails> users = jdbctemp.query(squery, new RowMapper<EmployeeDetails>()
+			{
 
+				
+					public EmployeeDetails mapRow(ResultSet rs, int arg1) throws SQLException 
+					{
+						EmployeeDetails employee = new EmployeeDetails();
+						employee.setEmail(rs.getString("email"));
+						employee.setPassword(rs.getString("password"));
+						return employee;
+					}
+				
+				
+			});
 			return users.size() > 0 ? users.get(0) : null;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-	class UserMapper implements RowMapper<EmployeeDetails> 
-	{
-
-		public EmployeeDetails mapRow(ResultSet rs, int arg1) throws SQLException 
-		{
-			EmployeeDetails employee = new EmployeeDetails();
-			employee.setEmail(rs.getString("email"));
-			employee.setPassword(rs.getString("password"));
-			return employee;
-		}
-	}
+       
+   }
 	String mailid;
 	public EmployeeDetails doemail(EmployeeDetails employee)
 	{
 		mailid=employee.getEmail();
-	    try 
-	    {
+	   
 	     String squery = "select email, password from userdetails where email='" + employee.getEmail()+ "'";
-	 	List<EmployeeDetails> users = jdbctemp.query(squery, new UserMapperEmail());
-
+	     List<EmployeeDetails> users = jdbctemp.query(squery, new RowMapper<EmployeeDetails>()
+			{
+					public EmployeeDetails mapRow(ResultSet rs, int arg1) throws SQLException 
+					{
+						EmployeeDetails employee = new EmployeeDetails();
+						employee.setEmail(rs.getString("email"));
+						employee.setPassword(rs.getString("password"));
+						return employee;
+					}	
+			});
 			return users.size() > 0 ? users.get(0) : null;
-		} catch (Exception e) {
-			return null;
-		}
+		
 	}
 	class UserMapperEmail implements RowMapper<EmployeeDetails> 
 	{

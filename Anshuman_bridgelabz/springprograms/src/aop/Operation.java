@@ -4,11 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Operation 
-{
-	
-	public void msg() {
-		System.out.println("msg method invoked");
-	}
-
-	
+{	
+	public void msg() 
+	{
+		System.out.println("msg from operation class method invoked");
+	}	
 }

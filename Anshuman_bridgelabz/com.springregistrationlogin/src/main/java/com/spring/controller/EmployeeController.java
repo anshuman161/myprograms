@@ -18,7 +18,8 @@ import com.spring.services.ServiceImplementation;
 import com.spring.util.Utility;
 
 @RestController
-public class EmployeeController {
+public class EmployeeController 
+{
 
 	@Autowired
 	private ServiceImplementation service;

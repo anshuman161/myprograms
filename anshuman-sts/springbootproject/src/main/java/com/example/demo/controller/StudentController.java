@@ -9,14 +9,13 @@ import com.example.demo.beans.StudentDetails;
 import com.example.demo.service.StudentService;
 
 @RestController
-@RequestMapping(value = "/goToCheck")
 public class StudentController 
 {
 	@Autowired
 	private StudentService service;
 	
 	@RequestMapping("/goRegister")
-	public String doregister(@RequestBody StudentDetails student)
+	public String doRegister(@RequestBody StudentDetails student)
 	{
 		System.out.println("This is controller.");
 		String demo=service.doRegister(student);
@@ -29,4 +28,6 @@ public class StudentController
 			return "registration fail";
 		}
 	}
+	
+	
 }

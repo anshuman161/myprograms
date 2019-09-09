@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="demo"/>
-<aop-project name="springbootlogin"/>
+<aop-project name="springbootproject"/>
+<aop-project name="springbootloginview"/>
 </aop-reference-model>

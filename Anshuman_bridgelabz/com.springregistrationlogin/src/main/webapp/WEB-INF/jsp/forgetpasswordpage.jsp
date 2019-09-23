@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <form action="resetpassword" method="post">
+  <form action="forgetpassword" method="post">
   <table><tr><td>
   Enter Email</td> <td><input type="email" name="email"></td></tr>
-
  <tr><td> <input type="submit" value="Submit"></td></tr>
   </table>
   </form>

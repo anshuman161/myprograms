@@ -3,6 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/servletregistrationlogin/build/classes"/>
-        <property name="context-root" value="servletregistrationlogin"/>
+        <property name="context-root" value="myForm"/>
     </wb-module>
 </project-modules>

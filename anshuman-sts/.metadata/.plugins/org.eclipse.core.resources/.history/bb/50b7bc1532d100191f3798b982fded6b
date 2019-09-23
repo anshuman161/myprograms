@@ -1,6 +1,0 @@
-package com.example.demo.beans;
-
-public class StudentInfo {
-private int id;
-private String name;
-}

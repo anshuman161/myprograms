@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class Main {
+public class Main 
+{
 	/*
 	 * @RequestMapping("/Home") public String view(String name,HttpSession session)
 	 * { session.setAttribute("name", name); System.out.println("hello"); return

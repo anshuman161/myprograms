@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form action="newPassword" method="get">
+ <form action="newPassword" method="post">
  <tr><td> Enter New Password </td> <td><input type="password" name="password"></td></tr>
  <tr><td> <input type="submit" value="Submit"></td></tr>
  </form>

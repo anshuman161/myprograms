@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +27,12 @@ public class UserImpl implements UserService {
 	private UtilMethods util;
 
 	@Autowired
-	ModelMapper mapper;
+	private ModelMapper mapper;
 
 	@Transactional
 	@Override
-	public void save(UserDto student) {
+	public void save(UserDto student) 
+	{
 		UserInformation checkValid = user.checkUser(student.getEmail());
 		if (checkValid == null) {
 			UserInformation information = mapper.map(student, UserInformation.class);
@@ -40,7 +42,6 @@ public class UserImpl implements UserService {
 			user.save(information);
 			String tokens = util.generateTokens(information.getUserId());
 			util.sendMail(student.getEmail(), "Email verifying", "http://localhost:8080/students/verify/" + tokens);
-
 		}
 	}
 
@@ -76,24 +77,24 @@ public class UserImpl implements UserService {
 	public boolean forgetPassword(String email) {
 		UserInformation info = user.checkUser(email);
 		if (info != null) {
-			util.sendMail(info.getEmail(), "Reset Password",
-					"http://localhost:8080/students/changePassword/" + util.generateTokens(info.getUserId()));
+			util.sendMail(info.getEmail(), "Reset Password", util.generateTokens(info.getUserId()));
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	@Transactional
 	@Override
-	public boolean resetPassword(UserResetPassword password, String token) {
-		if (password.getPassword().equals(password.getConfirmPassword())) {
+	public boolean resetPassword(UserResetPassword password, String token)
+	{         
+		if (password.getPassword().equals(password.getConfirmPassword())) 
+		{
 			long userId = util.parseToken(token);
-			user.changePassword(password.getPassword(), userId);
+			user.changePassword(bcrypt.encode(password.getPassword()), userId);
 			return true;
 		} else {
 			return false;
 		}
-
 	}
 
 }

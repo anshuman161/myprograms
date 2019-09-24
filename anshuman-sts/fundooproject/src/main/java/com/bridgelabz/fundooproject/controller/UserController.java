@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,7 @@ public class UserController
 	  } 
 	  else
 	  {
-		  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Login Fail", 200));
+		  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Login Fail", 400));
 	  }
 	 }
 	@GetMapping("/verify/{token}")
@@ -56,25 +57,31 @@ public class UserController
 		{
 			  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Verification Done", 200));	
 		}
-		else {
-			  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Verification Fail", 200));
+		else 
+		{
+			  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Verification Fail", 400));
 		}	
 	}
 	@GetMapping("/forgetPassword")
-	public void forgetPassword(@RequestParam String email)
+	public ResponseEntity<Response> forgetPassword(@RequestParam String email)
 	{
-		  service.forgetPassword(email);
-		
+		  boolean demo=service.forgetPassword(email);
+		  if (demo) {
+			  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Email Send Succeffull", 200));
+		  }
+          else {
+        	  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Email Not Sent", 400));
+		}			
 	}	
-	@PostMapping("/changePassword/{token}")
-	public ResponseEntity<Response> doResetPassword(@RequestBody UserResetPassword userPassword,@PathVariable String token)
+	@PostMapping("/changePassword")
+	public ResponseEntity<Response> doResetPassword(@RequestBody UserResetPassword userPassword,@RequestHeader String token)
 	{		
 		boolean demo=service.resetPassword(userPassword, token);
 		if (demo) {
 			  return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Password Reset done", 200));
 		}
            else {
-        	   return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Password Reset Fail", 200));
+        	   return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Password Reset Fail", 400));
 		}			
 	}
 }

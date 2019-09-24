@@ -1,16 +1,17 @@
 package com.bridgelabz.fundooproject.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Component
 @Entity
@@ -64,11 +65,28 @@ public class UserInformation
 		this.password = password;
 	}
 	
-	public boolean isVerified() {
+	public boolean isVerified() 
+	{
 		return isVerified;
 	}
 	public void setVerified(boolean isVerified) 
 	{
 		this.isVerified = isVerified;
 	}
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	private List<NoteDetails> note ;
+
+	public List<NoteDetails> getNote() 
+	{
+		return note;
+	}
+	public void setNote(List<NoteDetails> note) 
+	{
+		this.note = note;
+	}
+	
+	
+	
 }

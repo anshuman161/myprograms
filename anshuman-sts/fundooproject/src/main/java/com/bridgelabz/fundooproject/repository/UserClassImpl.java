@@ -14,7 +14,6 @@ import com.bridgelabz.fundooproject.model.UserResetPassword;
 @Repository
 public class UserClassImpl implements User
 {
-	
 	@Autowired
 	private EntityManager entityManager;
 	@Override
@@ -31,7 +30,6 @@ public class UserClassImpl implements User
 		Session currentsession = entityManager.unwrap(Session.class);
 		currentsession.save(student);
 	}
-
 	public boolean saveVerfied(long id) 
 	{
 		Session currentsession = entityManager.unwrap(Session.class);
@@ -53,7 +51,7 @@ public class UserClassImpl implements User
 	public boolean changePassword(String password, Long userId)
 	{
 		Session currentsession = entityManager.unwrap(Session.class);
-		Query query=currentsession.createQuery("update UserInformation set password=:password where userId=:userID");
+		Query query=currentsession.createQuery("update UserInformation set password=:password where userId=:userId");
 		    query.setParameter("password", password);
             query.setParameter("userId", userId);
             int demo = query.executeUpdate();

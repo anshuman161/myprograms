@@ -6,7 +6,7 @@ public interface User
 {
 	public void save(UserInformation student);
 
-	public UserInformation checkUser(String email);
+	public UserInformation getUser(String email);
 
 	public boolean saveVerfied(long id);
 	

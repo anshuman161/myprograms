@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "student_info")
+@Table(name = "user_details")
 public class UserInformation
 {
 	@Id
@@ -26,8 +28,7 @@ public class UserInformation
 	private long phoneno;
 	private String address;
 	private String password;
-	private boolean isVerified;
-	
+	private boolean isVerified;	
 	public Long getUserId() {
 		return userId;
 	}
@@ -73,7 +74,7 @@ public class UserInformation
 	{
 		this.isVerified = isVerified;
 	}
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	private List<NoteDetails> note ;
@@ -86,7 +87,7 @@ public class UserInformation
 	{
 		this.note = note;
 	}
+
 	
-	
-	
+    
 }

@@ -1,7 +1,5 @@
 package com.bridgelabz.fundooproject.model;
 
-import org.springframework.stereotype.Component;
-@Component
 public class UserDto 
 {
 private String username;
@@ -9,7 +7,7 @@ private String email;
 private long phoneno;
 private String address;
 private String password;
-private boolean isVerified;
+
 public String getUsername() {
 	return username;
 }
@@ -39,12 +37,6 @@ public String getPassword() {
 }
 public void setPassword(String password) {
 	this.password = password;
-}
-public boolean isVerified() {
-	return isVerified;
-}
-public void setVerified(boolean isVerified) {
-	this.isVerified = isVerified;
 }
 
 }

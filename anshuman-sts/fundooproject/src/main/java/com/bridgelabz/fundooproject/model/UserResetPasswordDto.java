@@ -1,6 +1,6 @@
 package com.bridgelabz.fundooproject.model;
 
-public class UserResetPassword {
+public class UserResetPasswordDto {
  private String password;
  private String confirmPassword;
 public String getPassword() {

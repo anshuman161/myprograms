@@ -1,12 +1,16 @@
 package com.bridgelabz.fundooproject.model;
 
-import org.springframework.stereotype.Component;
+import java.time.LocalDateTime;
 
-@Component
 public class NoteDto 
 {
 private String tittle;
 private String description;
+private LocalDateTime createdTime;
+private LocalDateTime updatedTime;
+private boolean isPin;
+private boolean isArchieve;
+private boolean isTrash;
 public String getTittle() {
 	return tittle;
 }
@@ -18,6 +22,36 @@ public String getDescription() {
 }
 public void setDescription(String description) {
 	this.description = description;
+}
+public LocalDateTime getCreatedTime() {
+	return createdTime;
+}
+public void setCreatedTime(LocalDateTime createdTime) {
+	this.createdTime = createdTime;
+}
+public LocalDateTime getUpdatedTime() {
+	return updatedTime;
+}
+public void setUpdatedTime(LocalDateTime updatedTime) {
+	this.updatedTime = updatedTime;
+}
+public boolean isPin() {
+	return isPin;
+}
+public void setPin(boolean isPin) {
+	this.isPin = isPin;
+}
+public boolean isArchieve() {
+	return isArchieve;
+}
+public void setArchieve(boolean isArchieve) {
+	this.isArchieve = isArchieve;
+}
+public boolean isTrash() {
+	return isTrash;
+}
+public void setTrash(boolean isTrash) {
+	this.isTrash = isTrash;
 }
 
 }

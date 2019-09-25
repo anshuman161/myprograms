@@ -1,6 +1,7 @@
 package com.bridgelabz.fundooproject.repository;
 
 import com.bridgelabz.fundooproject.model.NoteDetails;
+import com.bridgelabz.fundooproject.model.NoteDto;
 import com.bridgelabz.fundooproject.model.UserInformation;
 
 public interface Note {
@@ -8,6 +9,9 @@ public interface Note {
 
 public UserInformation findById(long tokenId);
 
-public boolean updateNotes(NoteDetails details);
+public NoteDetails updateNotes(NoteDetails details);
 
+public NoteDetails findNoteById(long NoteId);
+
+public int deleteNotes(Long id);
 }

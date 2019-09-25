@@ -9,7 +9,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
 @Component
-public class UtilMethods 
+public class Utility 
 {
 	@Autowired
 	private JavaMailSender javaMailSender;

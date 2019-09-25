@@ -15,7 +15,7 @@ public int getStatus() {
 public void setStatus(int status) {
 	this.status = status;
 }
-public Response(String messege, int status) {
+public Response(String messege, int status,Object object) {
 
 	this.messege = messege;
 	this.status = status;

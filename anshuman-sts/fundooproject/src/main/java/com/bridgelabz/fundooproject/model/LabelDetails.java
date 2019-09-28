@@ -1,47 +1,34 @@
 package com.bridgelabz.fundooproject.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "label_list")
 public class LabelDetails {
 	@Id
-	private String labelNAme;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<UserInformation> user;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<NoteDetails> notes;
-
-	public String getLabelNAme() {
-		return labelNAme;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int labelId;
+	private String labelName;
+    
+		public int getLabelId() {
+		return labelId;
 	}
 
-	public void setLabelNAme(String labelNAme) {
-		this.labelNAme = labelNAme;
+	public void setLabelId(int labelId) {
+		this.labelId = labelId;
 	}
 
-	public List<UserInformation> getUser() {
-		return user;
+		public String getLabelName() {
+		return labelName;
 	}
 
-	public void setUser(List<UserInformation> user) {
-		this.user = user;
+	public void setLabelName(String labelName) {
+		this.labelName = labelName;
 	}
 
-	public List<NoteDetails> getNotes() {
-		return notes;
-	}
-
-	public void setNotes(List<NoteDetails> notes) {
-		this.notes = notes;
-	}
-
+	
 }

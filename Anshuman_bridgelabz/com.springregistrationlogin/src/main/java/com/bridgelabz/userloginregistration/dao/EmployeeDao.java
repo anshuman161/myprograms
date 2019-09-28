@@ -28,7 +28,7 @@ public class EmployeeDao {
 		return jdbctemp.update(query);
 	}
 
-	public EmployeeDetails dologin(EmployeeDetails employee) {
+	public boolean dologin(EmployeeDetails employee) {
 		String squery = "select email, password from userdetails where email='" + employee.getEmail()
 				+ "' and password='" + employee.getPassword() + "'";
 		System.out.println("Dao page inside method :-" + squery);
@@ -40,7 +40,13 @@ public class EmployeeDao {
 				return employee;
 			}
 		});
-		return users.size() > 0 ? users.get(0) : null;
+		if (users.size()>0)
+		{
+		 return true;	
+		}
+		else {
+			return false;
+		}
 
 	}
 

@@ -87,7 +87,16 @@ public class UserInformation
 	{
 		this.note = note;
 	}
-
-	
+    @OneToMany
+    @JoinColumn(name = "userId")
+	private List<LabelDetails> labelDetails;
+	public List<LabelDetails> getLabelDetails() 
+	{
+		return labelDetails;
+	}
+	public void setLabelDetails(List<LabelDetails> labelDetails) 
+	{
+		this.labelDetails = labelDetails;
+	}
     
 }

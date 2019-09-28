@@ -22,7 +22,7 @@ public class LoginController extends HttpServlet {
 System.out.println("login page controller");
 		boolean demo = service.dologin(request, response);
 		
-		  if (demo == true) //verifing user is valid or not 
+		  if (demo) //verifing user is valid or not 
 		{
 		  System.out.println("inside if block"); 
 		  HttpSession session =request.getSession(); //creating session object session.setAttribute("email",

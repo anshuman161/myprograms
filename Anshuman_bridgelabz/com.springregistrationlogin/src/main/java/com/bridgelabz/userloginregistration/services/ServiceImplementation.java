@@ -27,7 +27,7 @@ public class ServiceImplementation implements ServiceInterface {
 		return demo;
 	}
 
-	public EmployeeDetails dologin(EmployeeDetails employee) {
+	public boolean dologin(EmployeeDetails employee) {
 
 		return employeedao.dologin(employee);
 	}

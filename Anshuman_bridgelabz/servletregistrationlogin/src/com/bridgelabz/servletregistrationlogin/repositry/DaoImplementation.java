@@ -59,7 +59,7 @@ public class DaoImplementation
 		return status;
 	}
 
-	//this method is using for login ,here passing pojo class
+	//this method is using for login ,here passing model class
 	public boolean dologin(UserDetails user) {
 		boolean demo = false;
 		String email = user.getEmail();

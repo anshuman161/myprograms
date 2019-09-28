@@ -58,20 +58,22 @@ public class EmployeeController {
 
 	@PostMapping("/login")
 	public ModelAndView doLogIn(@ModelAttribute EmployeeDetails employee) {
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
 		String password = employee.getPassword();
 		String newPassword = util.encryption(password);
 		employee.setPassword(newPassword);
-		EmployeeDetails demo = service.dologin(employee);
-		if (demo != null) {
+		boolean demo = service.dologin(employee);
+		if (demo) {
 			System.out.println("inside dologin :-");
-			mv.addObject("msg", "homepage" + demo + ", You have successfully logged in.");
-			mv.setViewName("homepage");
+			//mv.addObject("msg", "homepage" + demo + ", You have successfully logged in.");
+			//mv.setViewName("homepage");
+		return new ModelAndView("homepage");
 		} else {
-			mv.addObject("msg", "Invalid user id or password.");
-			mv.setViewName("loginpage");
+			//mv.addObject("msg", "Invalid user id or password.");
+			return new ModelAndView("loginpage");
+			//mv.setViewName("loginpage");
 		}
-		return mv;
+		
 	}
 
 	@GetMapping("/logoutwork")

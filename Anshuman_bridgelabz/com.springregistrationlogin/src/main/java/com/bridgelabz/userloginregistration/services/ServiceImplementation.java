@@ -27,7 +27,8 @@ public class ServiceImplementation implements ServiceInterface {
 		return demo;
 	}
 
-	public boolean dologin(EmployeeDetails employee) {
+	public boolean dologin(EmployeeDetails employee) 
+	{
 
 		return employeedao.dologin(employee);
 	}
@@ -40,5 +41,4 @@ public class ServiceImplementation implements ServiceInterface {
 		System.out.println("inside service mail");
 		return employeedao.restpassword(employee);
 	}
-
 }

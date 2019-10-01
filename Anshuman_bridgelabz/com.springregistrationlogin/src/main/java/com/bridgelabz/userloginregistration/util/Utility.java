@@ -27,7 +27,7 @@ public class Utility
 	     for (int i = 0; i < bytes.length; i++) 
 	     {
 			//sb.append(Integer.toString((bytes[i] & 0xff)+0x100,16).substring(1));
-	    	 sb.append(Integer.toString((bytes[i] & 0xff)));
+	    	 sb.append(Integer.toHexString((bytes[i] & 0xff)));
 	    	
 		 }
 	     generatedPassword=sb.toString();

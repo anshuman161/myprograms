@@ -27,7 +27,9 @@ public class EmployeeController {
 
 	@Autowired
 	Utility util;
-
+ 
+    
+	
 	@RequestMapping("/registrationpage")
 	public String viewRegister() {
 
@@ -73,7 +75,6 @@ public class EmployeeController {
 			return new ModelAndView("loginpage");
 			//mv.setViewName("loginpage");
 		}
-		
 	}
 
 	@GetMapping("/logoutwork")
